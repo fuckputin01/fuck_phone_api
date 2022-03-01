@@ -7,3 +7,4 @@ class Phone(models.Model):
     note = models.TextField(blank=True, default='')
     has_whatsapp = models.BooleanField(default=False)
     name = models.CharField(max_length=64, default='')
+    email = models.CharField(max_length=128, default='')
