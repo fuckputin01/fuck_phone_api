@@ -4,4 +4,4 @@ from .models import Phone
 class PhoneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phone
-        fields = ('phone_int',)
+        fields = ('phone_int', 'name')
