@@ -9,12 +9,13 @@ class PhoneViewSet(viewsets.ModelViewSet):
     queryset = Phone.objects.order_by('last_used').all()
     serializer_class = PhoneSerializer
 
-    def update(self, request, *args, **kwargs):
+    def update_last_used(self, request, *args, **kwargs):
         instance: Phone = get_object_or_404(Phone, phone_int=kwargs['phone_number'])
         instance.last_used = datetime.now()
-        instance.save(update_fields=['last_used'])
+        instance.has_whatsapp = True
+        instance.save(update_fields=['last_used', 'has_whatsapp'])
         return Response({'ok':True})
 
 
 phone_list = PhoneViewSet.as_view({'get': 'list', 'post': 'create'})
-phone_detail = PhoneViewSet.as_view({'put': 'update'})
+phone_detail = PhoneViewSet.as_view({'put': 'update_last_used'})
